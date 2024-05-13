@@ -108,6 +108,15 @@ vim.keymap.set('n', '<leader>pv', ':Explore<Enter>', { desc = 'Open file explore
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+-- AUTO START IN NETRW
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 0 then
+      vim.cmd("Explore")
+    end
+  end
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -786,3 +795,4 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
